@@ -14,9 +14,15 @@ export default function Navbar() {
 
   const context = useContext(myContext);
   const { toggleMode, mode, cartItems } = context;
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const wish = useContext(WishlistContext);
   const { wishlistItems } = wish;
+
+  const logout = () => {
+    localStorage.clear("user");
+    window.location.href = "/";
+  };
 
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -83,24 +89,29 @@ export default function Navbar() {
                     </Link>
                   </div>
 
-                  <div className="flow-root">
-                    <Link
-                      to={"/order"}
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Order
-                    </Link>
-                  </div>
+                 
 
-                  <div className="flow-root">
-                    <a
-                      className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      Logout
-                    </a>
-                  </div>
+                  {user ? (
+                    <div className="flow-root">
+                      <a
+                        onClick={logout}
+                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        Logout
+                      </a>
+                    </div>
+                  ) : (
+                    <div className="flow-root">
+                      <Link
+                        to={"/signup"}
+                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        Signup
+                      </Link>
+                    </div>
+                  )}
 
                   <div className="flow-root">
                     <Link
@@ -202,7 +213,7 @@ export default function Navbar() {
               </div>
 
               {/* Search box */}
-              <div className="flex justify-center flex-1 lg:mr-32">
+              <div className="lg:flex hidden justify-center flex-1 lg:mr-32">
                 <input
                   type="text"
                   placeholder="Search..."
@@ -213,15 +224,15 @@ export default function Navbar() {
                 />
               </div>
 
-              <div className="flow-root mr-4">
+              <div className=" mr-2 flow-root lg:ml-6">
                 <Link
                   to={"/wishlist"}
                   style={{ color: mode === "dark" ? "white" : "" }}
-                  className="-m-2 block p-2 font-medium text-gray-900"
+                  className="group -m-2 flex justify-center items-center p-2"
                 >
-                  Wishlist
+                  Wishlist 
                   <span
-                    className="ml-2 text-sm font-medium text-gray-700 group-"
+                    className="ml-1 text-sm font-medium text-gray-700 group-"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     {wishlistItems.length}
@@ -230,22 +241,23 @@ export default function Navbar() {
               </div>
 
               <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link
-                    to={"/order"}
-                    className="text-sm font-medium text-gray-700 "
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    Order
-                  </Link>
-
-                  <a
-                    className="text-sm font-medium text-gray-700 cursor-pointer  "
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    Logout
-                  </a>
-                </div>
+              {user ? (
+                    <Link
+                      to={"/order"}
+                      className="text-sm font-medium text-gray-700 "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Order
+                    </Link>
+                  ) : (
+                    <Link
+                      to={"/signup"}
+                      className="text-sm font-medium text-gray-700 "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Signup
+                    </Link>
+                  )}
 
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 ">
