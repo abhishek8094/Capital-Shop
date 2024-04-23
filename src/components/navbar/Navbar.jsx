@@ -89,8 +89,6 @@ export default function Navbar() {
                     </Link>
                   </div>
 
-                 
-
                   {user ? (
                     <div className="flow-root">
                       <a
@@ -230,7 +228,7 @@ export default function Navbar() {
                   style={{ color: mode === "dark" ? "white" : "" }}
                   className="group -m-2 flex justify-center items-center p-2"
                 >
-                  Wishlist 
+                  Wishlist
                   <span
                     className="ml-1 text-sm font-medium text-gray-700 group-"
                     style={{ color: mode === "dark" ? "white" : "" }}
@@ -241,23 +239,32 @@ export default function Navbar() {
               </div>
 
               <div className="ml-auto flex items-center">
-              {user ? (
+                {user ? (
+                  <>
                     <Link
                       to={"/order"}
-                      className="text-sm font-medium text-gray-700 "
+                      className="text-sm font-medium text-gray-700 mr-4"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Order
                     </Link>
-                  ) : (
-                    <Link
-                      to={"/signup"}
+                    <button
+                      onClick={logout}
                       className="text-sm font-medium text-gray-700 "
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
-                      Signup
-                    </Link>
-                  )}
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    to={"/signup"}
+                    className="text-sm font-medium text-gray-700 mr-4"
+                    style={{ color: mode === "dark" ? "white" : "" }}
+                  >
+                    Signup
+                  </Link>
+                )}
 
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 ">
