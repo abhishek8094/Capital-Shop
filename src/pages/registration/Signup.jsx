@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import myContext from "../../context/myContext";
 import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, fireDB } from "../../firebase/FirebaseConfig";
+import { auth,fireDB } from "../../firebase/FirebaseConfig";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import Loader from "../../components/loader/Loader";
 
@@ -12,49 +12,61 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const context = useContext(myContext);
   const { loading, setLoading } = context;
 
-  const navigate=useNavigate();
-  
-  const signup = async () => {
-    setLoading(true);
-    if (name === "" || email === "" || password === "") {
-      return toast.error("All fields are required");
-    }
+  const navigate = useNavigate();
 
+  const signup = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (name === "" || email === "" || password === "" || confirmPassword === "") {
+      toast.error("All fields are required");
+      setLoading(false);
+      return;
+    }
+  
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+  
     try {
       const users = await createUserWithEmailAndPassword(auth, email, password);
-
+  
       const user = {
         name: name,
         uid: users.user.uid,
         email: users.user.email,
         time: Timestamp.now(),
       };
-
+  
       const userRef = collection(fireDB, "users");
       await addDoc(userRef, user);
-      toast.success("Signup Succesfully");
       setName("");
       setEmail("");
       setPassword("");
-      navigate("/Login")
+      setConfirmPassword("");
+      toast.success("Signup Successfully");
       setLoading(false);
-      
-     
+      navigate("/login");
     } catch (error) {
-      console.log(error);
+      console.error("Error signing up:", error.message);
+      toast.error("Signup failed. Please try again.");
       setLoading(false);
     }
   };
+  
 
   return (
-    <div className=" flex justify-center items-center bg-slate-500 h-screen">
+    <div className=" flex justify-center bg-slate-500 items-center h-screen">
       {loading && <Loader />}
       <div className=" bg-gray-800 px-10 py-10 rounded-xl ">
-        <div className="">
+      <form onSubmit={signup}>
+        <div>
           <h1 className="text-center text-white text-xl mb-4 font-bold">
             Signup
           </h1>
@@ -67,6 +79,7 @@ function Signup() {
             name="name"
             className=" bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none"
             placeholder="Name"
+            autoComplete="name"
           />
         </div>
 
@@ -78,6 +91,7 @@ function Signup() {
             name="email"
             className=" bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none"
             placeholder="Email"
+            autoComplete="email"
           />
         </div>
         <div>
@@ -87,16 +101,29 @@ function Signup() {
             onChange={(e) => setPassword(e.target.value)}
             className=" bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none"
             placeholder="Password"
+            autoComplete="new-password"
+          />
+        </div>
+
+        <div>
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className=" bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none"
+            placeholder="Confirm Password"
+            autoComplete="new-password"
           />
         </div>
         <div className=" flex justify-center mb-3">
           <button
-            onClick={signup}
+           type="submit"
             className=" bg-red-500 w-full text-white font-bold  px-2 py-2 rounded-lg"
           >
             Signup
           </button>
         </div>
+        </form>
         <div>
           <h2 className="text-white">
             Have an account ?{" "}
