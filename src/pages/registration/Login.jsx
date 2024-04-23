@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import myContext from "../../context/myContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -8,12 +8,21 @@ import Loader from "../../components/loader/Loader";
 
 function Login() {
   const context = useContext(myContext);
-  const { loading, setLoading } = context;
+  const { loading, setLoading , signUpSuccess} = context;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [autoFill, setAutoFill] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(signUpSuccess && !autoFill){
+      setEmail(signUpSuccess.email);
+      setPassword(signUpSuccess.password);
+      setAutoFill(true);
+    }
+  }, [signUpSuccess, autoFill]);
 
   const login = async () => {
     setLoading(true);
@@ -42,7 +51,8 @@ function Login() {
     <div className=" flex justify-center bg-slate-500 items-center h-screen">
       {loading && <Loader />}
       <div className=" bg-gray-800 px-10 py-10 rounded-xl ">
-        <div className="">
+        <form >
+        <div >
           <h1 className="text-center text-white text-xl mb-4 font-bold">
             Login
           </h1>
@@ -55,6 +65,7 @@ function Login() {
             name="email"
             className=" bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none"
             placeholder="Email"
+            autoComplete="email"
           />
         </div>
         <div>
@@ -64,6 +75,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             className=" bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none"
             placeholder="Password"
+            autoComplete="password"
           />
         </div>
         <div className=" flex justify-center mb-3">
@@ -74,6 +86,7 @@ function Login() {
             Login
           </button>
         </div>
+        </form>
         <div>
           <h2 className="text-white">
             Don't have an account ? {" "}
