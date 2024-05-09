@@ -7,6 +7,7 @@ import { FiSun } from "react-icons/fi";
 import myContext from "../../context/myContext";
 import { RxCross2 } from "react-icons/rx";
 import { WishlistContext } from "../../context/WishlistContext";
+import { IoSearch } from "react-icons/io5";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -197,11 +198,11 @@ export default function Navbar() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
+              <div className="ml-4 w-[250px] flex lg:ml-1">
                 <Link to={"/"} className="flex">
-                  <div className="flex ">
+                  <div>
                     <h1
-                      className=" text-3xl font-bold text-black  px-2 py-1 rounded"
+                      className=" text-3xl font-bold text-black  px-1 py-1 rounded transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Capital Shop
@@ -211,22 +212,29 @@ export default function Navbar() {
               </div>
 
               {/* Search box */}
-              <div className="lg:flex hidden justify-center flex-1 lg:mr-32">
+              <div className="flex items-center w-[400px] border-2 ml-12 rounded-md focus-within:border-indigo-500">
+                <select className="py-2 px-2 bg-transparent border-none hover:bg-gray-200 rounded-l-md">
+                  <option className=" border-none">All</option>
+                  <option className="border-none">Low to High</option>
+                  <option className="border-none">High To Low</option>
+                </select>
                 <input
                   type="text"
                   placeholder="Search..."
                   value={searchQuery}
                   onChange={handleSearchInputChange}
-                  className="w-full py-1 px-4 m-16 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                  style={{ backgroundColor: mode === "dark" ? "#4a4e57" : "" }}
+                  className="w-full py-2 px-3  border-none outline-none "
                 />
+                <div className="flex items-center justify-center w-14 h-full rounded-r-md">
+                  <IoSearch className="text-gray-400  h-6 w-6" />
+                </div>
               </div>
 
-              <div className=" mr-2 flow-root lg:ml-6">
+              <div className=" mr-2 flow-root lg:ml-80">
                 <Link
                   to={"/wishlist"}
                   style={{ color: mode === "dark" ? "white" : "" }}
-                  className="group -m-2 flex justify-center items-center p-2"
+                  className="group text-base m-2 flex justify-center items-center p-2 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
                 >
                   Wishlist
                   <span
@@ -243,14 +251,14 @@ export default function Navbar() {
                   <>
                     <Link
                       to={"/order"}
-                      className="text-sm font-medium text-gray-700 mr-4"
+                      className="text-base p-2 font-medium text-gray-700 mr-1 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Order
                     </Link>
                     <button
                       onClick={logout}
-                      className="text-sm font-medium text-gray-700 "
+                      className="text-base p-2 font-medium text-gray-700 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff] "
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Logout
@@ -259,14 +267,14 @@ export default function Navbar() {
                 ) : (
                   <Link
                     to={"/signup"}
-                    className="text-sm font-medium text-gray-700 mr-4"
+                    className="text-base p-2 font-medium text-gray-700 mr-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Signup
                   </Link>
                 )}
 
-                <div className="hidden lg:ml-8 lg:flex">
+                <div className="hidden lg:ml-1 p-2 lg:flex transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
@@ -282,7 +290,7 @@ export default function Navbar() {
                   </a>
                 </div>
 
-                <div className="hidden lg:ml-8 lg:flex">
+                <div className="hidden lg:ml-4 lg:flex ">
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
@@ -292,8 +300,7 @@ export default function Navbar() {
                   </a>
                 </div>
 
-                {/* Search */}
-                <div className="flex lg:ml-6">
+                <div className="flex p-1 lg:ml-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
                   <button className="" onClick={toggleMode}>
                     {mode === "light" ? (
                       <FiSun className="" size={30} />
@@ -306,7 +313,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
+                <div className="ml-4 p-2 flow-root lg:ml-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
                   <Link
                     to={"/cart"}
                     className="group -m-2 flex items-center p-2"
@@ -318,7 +325,7 @@ export default function Navbar() {
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-6 h-6"
+                      className="w-6 h-6 "
                     >
                       <path
                         strokeLinecap="round"
