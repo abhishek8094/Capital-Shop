@@ -2,14 +2,26 @@ import React, { useEffect } from "react";
 import { useState, useContext } from "react";
 import Layout from "../../components/layout/Layout";
 import Modal from "../../components/modal/Modal";
+import { toast } from "react-toastify";
 import MyContext from "../../context/myContext";
 import { BsCart4 } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { collection ,addDoc} from "firebase/firestore";
+import { fireDB } from "../../firebase/FirebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItems, mode, addToCart, removeFromCart, getCartTotal ,clearCart } = useContext(MyContext);
+  const {
+    cartItems,
+    mode,
+    addToCart,
+    removeFromCart,
+    getCartTotal,
+    clearCart,
+  } = useContext(MyContext);
 
   const [totalAmount, setTotalAmount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -29,7 +41,7 @@ const Cart = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const buyNow = async () => {
-    if (name === "" || address == "" || pincode == "" || phoneNumber == "") {
+    if (name === "" || address === "" || pincode === "" || phoneNumber === "") {
       return toast.error("All fields are required", {
         position: "top-center",
         autoClose: 1000,
@@ -42,7 +54,61 @@ const Cart = () => {
       });
     }
 
-    // Payment logic goes here
+    const addressInfo = {
+      name,
+      address,
+      pincode,
+      phoneNumber,
+      date: new Date().toLocaleString("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+      }),
+    };
+
+    var options = {
+      key: "rzp_test_wQFMPO61jernbb",
+      key_secret: "vLcEwQUEgkNpHvV5fSaOVQhg",
+      amount: parseInt(grandTotal * 100),
+      currency: "INR",
+      order_receipt: "order_rcptid_" + name,
+      name: "Capital Shop",
+      description: "for testing purpose",
+      handler: function (response) {
+        toast.success("Payment Successful");
+
+        navigate("/");
+
+        const paymentId = response.razorpay_payment_id;
+
+        const orderInfo = {
+          cartItems,
+          addressInfo,
+          date: new Date().toLocaleString("en-US", {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+          }),
+          email: JSON.parse(localStorage.getItem("user")).user.email,
+          userid: JSON.parse(localStorage.getItem("user")).user.uid,
+          paymentId,
+        };
+
+        try {
+          const orderRef = collection(fireDB, "order");
+          addDoc(orderRef, orderInfo);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    var pay = new window.Razorpay(options);
+    pay.open();
   };
 
   return (
@@ -126,17 +192,13 @@ const Cart = () => {
                       >
                         +
                       </button>
-                      <button
-                        onClick={() => clearCart(item)}
-                        className="ml-4"
-                      >
+                      <button onClick={() => clearCart(item)} className="ml-4">
                         <RiDeleteBin6Line />
                       </button>
                     </div>
                   </div>
                 ))}
               </div>
-
 
               {/* Order Summary */}
               <div className="lg:w-1/3 mt-6 lg:mt-0">
@@ -206,13 +268,23 @@ const Cart = () => {
                   </div>
                   <hr className="my-4" />
                   <div className="flex justify-between mb-3">
-                    <p className="text-lg font-bold" style={{
-                            color: mode === "dark" ? "white" : "",
-                          }}>Total</p>
+                    <p
+                      className="text-lg font-bold"
+                      style={{
+                        color: mode === "dark" ? "white" : "",
+                      }}
+                    >
+                      Total
+                    </p>
                     <div>
-                      <p className="mb-1 text-lg font-bold" style={{
-                            color: mode === "dark" ? "white" : "",
-                          }}>₹{getCartTotal()}</p>
+                      <p
+                        className="mb-1 text-lg font-bold"
+                        style={{
+                          color: mode === "dark" ? "white" : "",
+                        }}
+                      >
+                        ₹{getCartTotal()}
+                      </p>
                     </div>
                   </div>
 
