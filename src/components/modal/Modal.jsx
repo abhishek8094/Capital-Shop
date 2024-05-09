@@ -13,10 +13,11 @@ export default function Modal({
   setPincode,
   setPhoneNumber,
   buyNow,
-}) {
+}) 
+
+{
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-
 
   function closeModal() { 
     setIsOpen(false);
