@@ -1,13 +1,37 @@
 import React, { useState, useEffect } from "react";
 import MyContext from "./myContext";
 import { toast } from "react-toastify";
-import Order from "../pages/order/Order";
+import { fireDB } from "../firebase/FirebaseConfig";
+import { getDocs, collection } from "firebase/firestore";
 
 const myState = (props) => {
   const [mode, setMode] = useState("light");
   const [loading, setLoading] = useState(false);
+
   const [order, setOrder] = useState([]);
-  const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
+
+  const getOrderData = async () => {
+    setLoading(true);
+    try {
+      const result = await getDocs(collection(fireDB, "order"));
+      const ordersArray = [];
+      result.forEach((doc) => {
+        ordersArray.push(doc.data());
+      });
+      setOrder(ordersArray);
+    } catch (error) {
+      console.error("Error fetching order data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+
+  const [cartItems, setCartItems] = useState(
+    localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : []
+  );
 
   const addToCart = (item) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -22,28 +46,25 @@ const myState = (props) => {
       );
     } else {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
-      toast.success("Added to cart")
+      toast.success("Added to cart");
     }
-    
   };
 
-  
   const removeFromCart = (item) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
-  
+
     if (isItemInCart.quantity === 1) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id)); 
+      setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
       toast.success("Remove from Cart");
     } else {
       setCartItems(
         cartItems.map((cartItem) =>
           cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity - 1 } 
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         )
       );
     }
-
   };
 
   const toggleMode = () => {
@@ -61,20 +82,27 @@ const myState = (props) => {
   };
 
   const getCartTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   };
+
+  useEffect(() => {
+    getOrderData();
+  }, [fireDB]);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
   useEffect(() => {
-    const cartItems = localStorage.getItem("cartItems");
-    if (cartItems) {
-      setCartItems(JSON.parse(cartItems));
+    const storedCartItems = localStorage.getItem("cartItems");
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
     }
   }, []);
-  
+
   return (
     <MyContext.Provider
       value={{
@@ -82,7 +110,8 @@ const myState = (props) => {
         toggleMode,
         loading,
         setLoading,
-        Order,
+        order,
+        setOrder,
         cartItems,
         addToCart,
         removeFromCart,
