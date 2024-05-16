@@ -22,7 +22,7 @@ const Filter = ({ categories, selectedCategory, handleCategoryChange, handleSort
   };
 
   return (
-    <div className="mb-4 text-center ml-7 mt-2 lg:w-1/4 lg:pr-4">
+    <div className="mb-4 text-center ml-7 mr-7 mt-2 lg:w-1/4 lg:pr-4">
       <h1 className='text-2xl mb-2' style={{ color: mode === "dark" ? "white" : "" }}>Filter</h1>
       <select
         value={selectedCategory}
