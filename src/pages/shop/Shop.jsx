@@ -7,14 +7,17 @@ import myContext from "../../context/myContext";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const [categories, setCategories] = useState([]);
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
-  const {mode} = useContext(myContext);
+  const { addToWishlist, removeFromWishlist, isInWishlist } =
+    useContext(WishlistContext);
+  const { mode } = useContext(myContext);
 
   async function getProducts(category = "") {
-    const response = await fetch(`https://dummyjson.com/products${category ? `/category/${category}` : ""}`);
+    const response = await fetch(
+      `https://dummyjson.com/products${category ? `/category/${category}` : ""}`
+    );
     const data = await response.json();
     setProducts(data.products);
   }
@@ -38,7 +41,7 @@ const Shop = () => {
       setProducts(sortedProducts);
     }
   }, [sortOrder]);
-  
+
   useEffect(() => {
     getCategories();
   }, []);
@@ -53,7 +56,6 @@ const Shop = () => {
 
   const handleSortChange = (sortOrder) => {
     setSortOrder(sortOrder);
-    
   };
 
   const toggleWishlist = (product) => {
@@ -72,14 +74,18 @@ const Shop = () => {
     <Layout>
       <div className="flex flex-col mb-10 lg:flex-row">
         <Filter
-         handleSortChange={handleSortChange}
+          sortOrder={sortOrder}
+          handleSortChange={handleSortChange}
           categories={categories}
           selectedCategory={selectedCategory}
           handleCategoryChange={handleCategoryChange}
         />
         <div className="mt-6 px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold title-font mb-2 text-gray-900" style={{ color: mode === "dark" ? "white" : "" }}>
+            <h1
+              className="text-2xl sm:text-3xl font-bold title-font mb-2 text-gray-900"
+              style={{ color: mode === "dark" ? "white" : "" }}
+            >
               Our Collection
             </h1>
             <div className="h-1 w-24 bg-pink-600 mx-auto rounded"></div>
@@ -112,7 +118,9 @@ const Shop = () => {
                   />
                 </div>
                 <div className="mt-4">
-                  <h1 className="text-lg uppercase font-bold">{product.title}</h1>
+                  <h1 className="text-lg uppercase font-bold">
+                    {product.title}
+                  </h1>
                   <p className="mt-2 text-gray-600 text-sm">
                     {product.description.slice(0, 60)}...
                   </p>
