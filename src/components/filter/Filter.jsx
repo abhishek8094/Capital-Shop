@@ -1,11 +1,10 @@
-import React from 'react';
-import {useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import myContext from '../../context/myContext';
 
-const Filter = ({ categories, selectedCategory, handleCategoryChange,handleSortChange }) => {
-
+const Filter = ({ categories, selectedCategory, handleCategoryChange, handleSortChange }) => {
   const [selectedSort, setSelectedSort] = useState("");
   const [isReset, setIsReset] = useState(false);
+  const { mode } = useContext(myContext);
 
   const handleSortOrderChange = (e) => {
     setSelectedSort(e.target.value);
@@ -13,15 +12,15 @@ const Filter = ({ categories, selectedCategory, handleCategoryChange,handleSortC
   };
 
   const handleResetChange = () => {
-    setIsReset(!isReset);
-    if (!isReset) {
+    const newResetState = !isReset;
+    setIsReset(newResetState);
+    if (newResetState) {
       handleCategoryChange({ target: { value: "" } });
       handleSortChange("");
       setSelectedSort("");
     }
   };
 
-  const {mode} = useContext(myContext);
   return (
     <div className="mb-4 text-center ml-7 mt-2 lg:w-1/4 lg:pr-4">
       <h1 className='text-2xl mb-2' style={{ color: mode === "dark" ? "white" : "" }}>Filter</h1>
@@ -45,8 +44,8 @@ const Filter = ({ categories, selectedCategory, handleCategoryChange,handleSortC
         className="p-2 border border-gray-300 rounded-md w-full"
       >
         <option value="">Price</option>
-        <option value="price-low-high"> Low to High</option>
-        <option value="price-high-low"> High to Low</option>
+        <option value="price-low-high">Low to High</option>
+        <option value="price-high-low">High to Low</option>
       </select>
 
       <div className="mt-4 text-xl">
@@ -56,7 +55,7 @@ const Filter = ({ categories, selectedCategory, handleCategoryChange,handleSortC
           onChange={handleResetChange}
           className="mr-2"
         />
-        <label style={{ color: mode === "dark" ? "white" : "" }}>Reset </label>
+        <label style={{ color: mode === "dark" ? "white" : "" }}>Reset</label>
       </div>
     </div>
   );
