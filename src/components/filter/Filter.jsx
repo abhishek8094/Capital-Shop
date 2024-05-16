@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import myContext from '../../context/myContext';
 
-const Filter = ({ categories, selectedCategory, handleCategoryChange, handleSortChange }) => {
+const Filter = ({ selectedCategory, handleCategoryChange, handleSortChange }) => {
   const [selectedSort, setSelectedSort] = useState("");
   const [isReset, setIsReset] = useState(false);
-  const { mode } = useContext(myContext);
+  const { mode ,categories } = useContext(myContext);
 
   const handleSortOrderChange = (e) => {
     setSelectedSort(e.target.value);
