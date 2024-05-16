@@ -219,6 +219,8 @@ export default function Navbar() {
                   value={searchQuery}
                   onChange={handleSearchInputChange}
                   className="w-full py-2 px-4  border-none outline-none "
+                  style={{ color: mode === "dark" ? "black" : "" }}
+                  
                 />
                 <div className="flex items-center justify-center w-14 h-full rounded-r-md">
                   <IoSearch className="text-gray-400  h-6 w-6" />
