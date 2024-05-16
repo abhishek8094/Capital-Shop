@@ -198,11 +198,11 @@ export default function Navbar() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 w-[250px] flex lg:ml-1">
-                <Link to={"/"} className="flex">
+              <div className=" w-[250px] flex lg:ml-1">
+                <Link to={"/"} className="flex ">
                   <div>
                     <h1
-                      className=" text-3xl font-bold text-black  px-1 py-1 rounded transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
+                      className=" text-3xl w-[200px] font-bold text-black  px-1 py-1 rounded transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Capital Shop
@@ -212,22 +212,21 @@ export default function Navbar() {
               </div>
 
               {/* Search box */}
-              <div className="flex items-center w-[400px] border-2 ml-12 rounded-md focus-within:border-indigo-500">
-                <select className="py-2 px-2 bg-transparent border-none hover:bg-gray-200 rounded-l-md">
-                  <option className=" border-none">All</option>
-                  <option className="border-none">Low to High</option>
-                  <option className="border-none">High To Low</option>
-                </select>
+              <div className="flex items-center w-[600px] border-2 relative left-40 rounded-md focus-within:border-indigo-500">
                 <input
                   type="text"
                   placeholder="Search..."
                   value={searchQuery}
                   onChange={handleSearchInputChange}
-                  className="w-full py-2 px-3  border-none outline-none "
+                  className="w-full py-2 px-4  border-none outline-none "
                 />
                 <div className="flex items-center justify-center w-14 h-full rounded-r-md">
                   <IoSearch className="text-gray-400  h-6 w-6" />
                 </div>
+              </div>
+
+              <div className="relative left-80 p-2 text-base transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
+                <Link to={"/shop"}>Shop</Link>
               </div>
 
               <div className=" mr-2 flow-root lg:ml-80">
@@ -274,7 +273,7 @@ export default function Navbar() {
                   </Link>
                 )}
 
-                <div className="hidden lg:ml-1 p-2 lg:flex transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
+                <div className="hidden lg:mr-1 p-2 w-28 lg:flex transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
