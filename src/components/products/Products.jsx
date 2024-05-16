@@ -5,7 +5,7 @@ import myContext from "../../context/myContext";
 
 export default function Products() {
   const context = useContext(myContext);
-  const { mode } = context;
+  const { mode, categories ,searchQuery } = context;
   const [products, setProducts] = useState([]);
   const { addToWishlist, removeFromWishlist, isInWishlist } =
     useContext(WishlistContext);
@@ -45,7 +45,10 @@ export default function Products() {
         <div className="h-1 w-24 bg-pink-600 mx-auto rounded"></div>
       </div>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-10">
-        {products.slice(0, 8).map((product) => (
+
+        {products.filter((obj) => obj.title.toLowerCase().includes(searchQuery))
+        .filter((obj) => obj.category.toLowerCase().includes(categories))
+        .slice(0, 8).map((product) => (
           <div
             key={product.id}
             className="bg-slate-200 rounded-lg m-3 overflow-hidden shadow-md px-10 py-8 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
