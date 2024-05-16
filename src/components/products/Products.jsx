@@ -1,8 +1,11 @@
 import { useContext, useState, useEffect } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { WishlistContext } from "../../context/WishlistContext";
+import myContext from "../../context/myContext";
 
 export default function Products() {
+  const context = useContext(myContext);
+  const { mode } = context;
   const [products, setProducts] = useState([]);
   const { addToWishlist, removeFromWishlist, isInWishlist } =
     useContext(WishlistContext);
@@ -10,7 +13,7 @@ export default function Products() {
   async function getProducts() {
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
     setProducts(data.products);
   }
 
@@ -31,9 +34,18 @@ export default function Products() {
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-6">
+      <div className="text-center mb-4">
+        <h1
+          className="text-2xl sm:text-3xl font-medium title-font mb-2 text-gray-900"
+          style={{ color: mode === "dark" ? "white" : "" }}
+        >
+          Our Collection
+        </h1>
+        <div className="h-1 w-24 bg-pink-600 mx-auto rounded"></div>
+      </div>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-10">
-        {products.map((product) => (
+        {products.slice(0, 8).map((product) => (
           <div
             key={product.id}
             className="bg-slate-200 rounded-lg m-3 overflow-hidden shadow-md px-10 py-8 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
