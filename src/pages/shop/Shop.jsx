@@ -8,6 +8,7 @@ import myContext from "../../context/myContext";
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [sortOrder, setSortOrder] = useState("");
   const [categories, setCategories] = useState([]);
   const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
   const {mode} = useContext(myContext);
@@ -25,6 +26,20 @@ const Shop = () => {
   }
 
   useEffect(() => {
+    if (sortOrder) {
+      const sortedProducts = [...products].sort((a, b) => {
+        if (sortOrder === "price-low-high") {
+          return a.price - b.price;
+        } else if (sortOrder === "price-high-low") {
+          return b.price - a.price;
+        }
+        return 0;
+      });
+      setProducts(sortedProducts);
+    }
+  }, [sortOrder]);
+  
+  useEffect(() => {
     getCategories();
   }, []);
 
@@ -34,6 +49,11 @@ const Shop = () => {
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
+  };
+
+  const handleSortChange = (sortOrder) => {
+    setSortOrder(sortOrder);
+    
   };
 
   const toggleWishlist = (product) => {
@@ -52,6 +72,7 @@ const Shop = () => {
     <Layout>
       <div className="flex flex-col mb-10 lg:flex-row">
         <Filter
+         handleSortChange={handleSortChange}
           categories={categories}
           selectedCategory={selectedCategory}
           handleCategoryChange={handleCategoryChange}
