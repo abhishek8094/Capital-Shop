@@ -9,10 +9,9 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortOrder, setSortOrder] = useState("");
-  const [categories, setCategories] = useState([]);
   const { addToWishlist, removeFromWishlist, isInWishlist } =
     useContext(WishlistContext);
-  const { mode } = useContext(myContext);
+  const { mode, categories, setCategories, } = useContext(myContext);
 
   async function getProducts(category = "") {
     const response = await fetch(
