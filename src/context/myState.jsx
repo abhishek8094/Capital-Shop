@@ -88,6 +88,9 @@ const myState = (props) => {
     );
   };
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     getOrderData();
   }, [fireDB]);
@@ -115,6 +118,10 @@ const myState = (props) => {
         cartItems,
         addToCart,
         removeFromCart,
+        searchQuery,
+        categories,
+        setCategories,
+        setSearchQuery,
         clearCart,
         getCartTotal,
       }}
