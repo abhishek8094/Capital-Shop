@@ -84,7 +84,7 @@ const Shop = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {products
               .filter((obj) => obj.title.toLowerCase().includes(searchQuery))
-              .slice(0, 8)
+              .slice(0, 12)
               .map((product) => (
                 <div
                   key={product.id}
