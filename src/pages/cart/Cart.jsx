@@ -157,7 +157,7 @@ const Cart = () => {
                           {item.title}
                         </h1>
                         <p
-                          className="text-gray-600"
+                          className="text-gray-600 "
                           style={{
                             color: mode === "dark" ? "white" : "",
                           }}
