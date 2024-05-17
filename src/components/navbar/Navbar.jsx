@@ -214,14 +214,14 @@ export default function Navbar() {
               </div>
 
               {/* Search box */}
-              <div className="hidden lg:flex items-center w-[600px] border-2 relative left-40 rounded-md focus-within:border-indigo-500">
+              <div className="hidden lg:flex items-center w-[800px] border-2 hover:border-black relative left-40 rounded-md ">
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Search your products..."
                   value={searchQuery}
                   onChange={handleSearchInputChange}
                   className="w-full py-2 px-4 border-none outline-none"
-                  style={{ color: mode === "dark" ? "black" : "" }}
+                  style={{ color: mode === "dark" ? "white" : "" }}
                 />
                 <div className="flex items-center justify-center w-14 h-full rounded-r-md">
                   <IoSearch className="text-gray-400 h-6 w-6" />
