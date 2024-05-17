@@ -7,7 +7,6 @@ import { getDocs, collection } from "firebase/firestore";
 const myState = (props) => {
   const [mode, setMode] = useState("light");
   const [loading, setLoading] = useState(false);
-
   const [order, setOrder] = useState([]);
 
   const getOrderData = async () => {
@@ -90,6 +89,11 @@ const myState = (props) => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [sortOrder, setSortOrder] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedSort, setSelectedSort] = useState("");
+  const [isReset, setIsReset] = useState(false);
 
   useEffect(() => {
     getOrderData();
@@ -121,6 +125,16 @@ const myState = (props) => {
         searchQuery,
         categories,
         setCategories,
+        products,
+        setProducts,
+        sortOrder,
+        setSortOrder,
+        selectedCategory,
+        setSelectedCategory,
+        selectedSort,
+        isReset,
+        setIsReset,
+        setSelectedSort,
         setSearchQuery,
         clearCart,
         getCartTotal,
