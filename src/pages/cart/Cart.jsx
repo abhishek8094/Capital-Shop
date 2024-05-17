@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Layout from "../../components/layout/Layout";
 import Modal from "../../components/modal/Modal";
 import { toast } from "react-toastify";
@@ -27,7 +26,7 @@ const Cart = () => {
     window.scroll(0, 0);
     let temp = 0;
     cartItems.forEach((cartItem) => {
-      temp = temp + parseInt(cartItem.price) * cartItem.quantity;
+      temp += parseInt(cartItem.price) * cartItem.quantity;
     });
     setTotalAmount(temp);
   }, [cartItems]);
@@ -138,10 +137,10 @@ const Cart = () => {
               <div className="lg:w-2/3">
                 {cartItems.map((item) => (
                   <div
-                    className="flex flex-col lg:flex-row border-2 p-4 lg:p-12 justify-between items-center mb-8"
+                    className="flex flex-col sm:flex-row border-2 p-4 lg:p-12 justify-between items-center mb-8"
                     key={item.id}
                   >
-                    <div className="flex gap-4 w-full lg:w-auto">
+                    <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                       <img
                         src={item.thumbnail}
                         alt={item.title}
@@ -157,7 +156,7 @@ const Cart = () => {
                           {item.title}
                         </h1>
                         <p
-                          className="text-gray-600 "
+                          className="text-gray-600"
                           style={{
                             color: mode === "dark" ? "white" : "",
                           }}
@@ -174,7 +173,7 @@ const Cart = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="flex gap-4 items-center mt-4 lg:mt-0">
+                    <div className="flex gap-4 items-center mt-4 sm:mt-0">
                       <button
                         className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
                         onClick={() => {
