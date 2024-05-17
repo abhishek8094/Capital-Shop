@@ -76,9 +76,10 @@ const myState = (props) => {
     }
   };
 
-  const clearCart = () => {
-    setCartItems([]);
-    toast.error("Remove from Cart");
+  const clearCart = (item) => {
+    const updatedCart = cartItems.filter((cartItem) => cartItem.id !== item.id);
+    setCartItems(updatedCart);
+    toast.error("Remove from cart");
   };
 
   const getCartTotal = () => {
