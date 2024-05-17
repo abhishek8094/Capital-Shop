@@ -78,6 +78,7 @@ const myState = (props) => {
 
   const clearCart = () => {
     setCartItems([]);
+    toast.error("Remove from Cart");
   };
 
   const getCartTotal = () => {
