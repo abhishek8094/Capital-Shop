@@ -55,7 +55,7 @@ const Wishlist = () => {
                     className="text-gray-700 mb-2"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
-                    {description.slice(0, 60)}...
+                    {description.slice(0, 80)}...
                   </p>
                   <p
                     className="text-gray-700 mb-2"
