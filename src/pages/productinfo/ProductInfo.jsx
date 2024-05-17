@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import myContext from "../../context/myContext";
 import Loader from "../../components/loader/Loader";
+import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { WishlistContext } from "../../context/WishlistContext";
@@ -9,8 +10,9 @@ import { WishlistContext } from "../../context/WishlistContext";
 const ProductInfo = () => {
   const [product, setProduct] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
-  const { mode, addToCart } = useContext(myContext);
+  const { addToWishlist, removeFromWishlist, isInWishlist } =
+    useContext(WishlistContext);
+  const { mode, cartItems, addToCart } = useContext(myContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -33,8 +35,14 @@ const ProductInfo = () => {
   };
 
   const handleAddToCart = () => {
-    addToCart(product);
-    setAddedToCart(true);
+    const isInCart = cartItems.some(item => item.id === product.id);
+
+    if (!isInCart) {
+      addToCart(product);
+      setAddedToCart(true);
+    } else {
+      toast.info("Item is already in cart")
+    }
   };
 
   useEffect(() => {
@@ -42,7 +50,11 @@ const ProductInfo = () => {
   }, [id]);
 
   if (!product) {
-    return <div><Loader/></div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   return (
