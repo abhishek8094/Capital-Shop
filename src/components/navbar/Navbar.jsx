@@ -214,7 +214,7 @@ export default function Navbar() {
               </div>
 
               {/* Search box */}
-              <div className="hidden xl:flex items-center w-[600px] border-2 relative left-40 rounded-md focus-within:border-indigo-500">
+              <div className="hidden lg:flex items-center w-[600px] border-2 relative left-40 rounded-md focus-within:border-indigo-500">
                 <input
                   type="text"
                   placeholder="Search..."
