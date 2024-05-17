@@ -60,7 +60,7 @@ const myState = (props) => {
         cartItems.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
+            : cartItem 
         )
       );
     }
