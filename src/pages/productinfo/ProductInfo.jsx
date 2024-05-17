@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import myContext from "../../context/myContext";
+import Loader from "../../components/loader/Loader";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { WishlistContext } from "../../context/WishlistContext";
@@ -41,7 +42,7 @@ const ProductInfo = () => {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   return (
