@@ -34,7 +34,6 @@ const myState = (props) => {
 
   const addToCart = (item) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
-
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
@@ -45,7 +44,8 @@ const myState = (props) => {
       );
     } else {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
-      toast.success("Added to cart");
+      toast.success("Added to cart" , {
+        autoClose: 1000});
     }
   };
 
