@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import MyContext from "../../context/myContext";
 import { BsCart4 } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { collection ,addDoc} from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { useNavigate } from "react-router-dom";
 
@@ -30,7 +30,7 @@ const Cart = () => {
       temp = temp + parseInt(cartItem.price) * cartItem.quantity;
     });
     setTotalAmount(temp);
-  });
+  }, [cartItems]);
 
   const Delivery = parseInt(0);
   const grandTotal = Delivery + totalAmount;
@@ -123,7 +123,7 @@ const Cart = () => {
         <h1 className="mb-10 text-center text-3xl font-bold">Cart Items</h1>
         {cartItems.length === 0 ? (
           <div className="flex justify-center mt-18">
-            <BsCart4 className="text-[320px]" />
+            <BsCart4 className="text-[100px] lg:text-[320px]" />
           </div>
         ) : (
           <div
@@ -133,15 +133,15 @@ const Cart = () => {
               color: mode === "dark" ? "white" : "",
             }}
           >
-            <div className="flex flex-col w-[80%] lg:flex-row lg:gap-40">
+            <div className="flex flex-col w-full lg:w-[80%] lg:flex-row lg:gap-10">
               {/* Product Items */}
               <div className="lg:w-2/3">
                 {cartItems.map((item) => (
                   <div
-                    className="flex border-2 p-12  justify-between items-center mb-8"
+                    className="flex flex-col lg:flex-row border-2 p-4 lg:p-12 justify-between items-center mb-8"
                     key={item.id}
                   >
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 w-full lg:w-auto">
                       <img
                         src={item.thumbnail}
                         alt={item.title}
@@ -174,7 +174,7 @@ const Cart = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 items-center mt-4 lg:mt-0">
                       <button
                         className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
                         onClick={() => {
