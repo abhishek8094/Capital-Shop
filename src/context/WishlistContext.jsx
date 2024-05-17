@@ -13,7 +13,7 @@ export const WishlistProvider = ({ children }) => {
 
   const removeFromWishlist = (productId) => {
     setWishlistItems(wishlistItems.filter((item) => item.id !== productId));
-    toast.success("Remove from Wishlist");
+    toast.error("Remove from Wishlist");
   };
 
   const isInWishlist = (productId) => {
