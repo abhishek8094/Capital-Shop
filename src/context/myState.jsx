@@ -54,7 +54,7 @@ const myState = (props) => {
 
     if (isItemInCart.quantity === 1) {
       setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
-      toast.success("Remove from Cart");
+      toast.error("Remove from Cart");
     } else {
       setCartItems(
         cartItems.map((cartItem) =>
