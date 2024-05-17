@@ -67,8 +67,8 @@ export default function Navbar() {
                     className="-m-2 inline-flex  items-center justify-center rounded-md p-2 text-gray-400"
                     onClick={() => setOpen(false)}
                   >
-                    <span className="sr-only " style={{ color: mode === "dark" ? "white" : "" }}>Close menu</span>
-                    <RxCross2 className="font-medium text-gray-900" />
+                    <span className="sr-only ">Close menu</span>
+                    <RxCross2 className="font-medium text-gray-900" style={{ color: mode === "dark" ? "white" : "" }} />
                   </button>
                 </div>
 
