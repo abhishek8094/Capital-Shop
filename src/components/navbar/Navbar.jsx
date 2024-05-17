@@ -31,7 +31,7 @@ export default function Navbar() {
     <div className="bg-white sticky top-0 z-50">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
+        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen} >
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -64,23 +64,24 @@ export default function Navbar() {
                 <div className="flex px-4 pb-2 pt-28">
                   <button
                     type="button"
-                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+                    className="-m-2 inline-flex  items-center justify-center rounded-md p-2 text-gray-400"
                     onClick={() => setOpen(false)}
                   >
-                    <span className="sr-only">Close menu</span>
-                    <RxCross2 />
+                    <span className="sr-only ">Close menu</span>
+                    <RxCross2 className="font-medium text-gray-900" />
                   </button>
                 </div>
 
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  <div className="flow-root">
-                    <Link to={"/shop"}>Shop</Link>
+                <div className=" mx-5 gap-4 border-t border-gray-200 px-4 py-4">
+                  <div className=" flow-root">
+                    <Link to={"/shop"}
+                    className="text-base p-2 font-medium  text-gray-900">Shop</Link>
                   </div>
                   <div className="flow-root">
                     <Link
                       to={"/wishlist"}
                       style={{ color: mode === "dark" ? "white" : "" }}
-                      className="-m-2 block p-2 font-medium text-gray-900"
+                      className=" block p-2 font-medium text-gray-900"
                     >
                       Wishlist
                       <span
@@ -93,31 +94,37 @@ export default function Navbar() {
                   </div>
 
                   {user ? (
-                    <div className="flow-root">
-                      <a
-                        onClick={logout}
-                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
-                        style={{ color: mode === "dark" ? "white" : "" }}
-                      >
-                        Logout
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="flow-root">
-                      <Link
-                        to={"/signup"}
-                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
-                        style={{ color: mode === "dark" ? "white" : "" }}
-                      >
-                        Signup
-                      </Link>
-                    </div>
-                  )}
+                  <>
+                    <Link
+                      to={"/order"}
+                      className=" text-base p-2 font-medium text-gray-700 "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Order
+                    </Link>
+                    <button
+                      onClick={logout}
+                      className=" text-base p-2  font-medium text-gray-700 "
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    to={"/signup"}
+                    className=" text-base p-2 font-medium text-gray-700 "
+                    style={{ color: mode === "dark" ? "white" : "" }}
+                  >
+                    Signup
+                  </Link>
+                )}
+
 
                   <div className="flow-root">
                     <Link
                       to={"/"}
-                      className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
+                      className=" block p-2 mt-3 font-medium text-gray-900 cursor-pointer"
                     >
                       <img
                         className="inline-block w-10 h-10 rounded-full"
@@ -229,14 +236,14 @@ export default function Navbar() {
               </div>
 
               <div className="hidden lg:flex relative left-80 p-2 text-base transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
-                <Link to={"/shop"}>Shop</Link>
+                <Link to={"/shop"} className="text-base font-medium">Shop</Link>
               </div>
 
               <div className="hidden lg:flex mr-2  lg:ml-80">
                 <Link
                   to={"/wishlist"}
                   style={{ color: mode === "dark" ? "white" : "" }}
-                  className="group text-base m-2 flex justify-center items-center p-2 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
+                  className="group text-base m-2 font-medium flex justify-center items-center p-2 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
                 >
                   Wishlist
                   <span
