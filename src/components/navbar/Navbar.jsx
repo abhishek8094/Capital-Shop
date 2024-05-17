@@ -1,26 +1,26 @@
-import React, { Fragment, useContext, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { Link } from 'react-router-dom';
-import { BsFillCloudSunFill } from 'react-icons/bs';
-import { FiSun } from 'react-icons/fi';
-import myContext from '../../context/myContext';
-import { RxCross2 } from 'react-icons/rx';
-import { WishlistContext } from '../../context/WishlistContext';
-import { IoSearch } from 'react-icons/io5';
+import React, { Fragment, useContext, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { Link } from "react-router-dom";
+import { BsFillCloudSunFill } from "react-icons/bs";
+import { FiSun } from "react-icons/fi";
+import myContext from "../../context/myContext";
+import { RxCross2 } from "react-icons/rx";
+import { WishlistContext } from "../../context/WishlistContext";
+import { IoSearch } from "react-icons/io5";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const context = useContext(myContext);
   const { toggleMode, mode, cartItems, searchQuery, setSearchQuery } = context;
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const wish = useContext(WishlistContext);
   const { wishlistItems } = wish;
 
   const logout = () => {
-    localStorage.clear('user');
-    window.location.href = '/';
+    localStorage.clear("user");
+    window.location.href = "/";
   };
 
   const handleSearchInputChange = (e) => {
@@ -57,8 +57,8 @@ export default function Navbar() {
               <Dialog.Panel
                 className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl"
                 style={{
-                  backgroundColor: mode === 'dark' ? 'rgb(40, 44, 52)' : '',
-                  color: mode === 'dark' ? 'white' : '',
+                  backgroundColor: mode === "dark" ? "rgb(40, 44, 52)" : "",
+                  color: mode === "dark" ? "white" : "",
                 }}
               >
                 <div className="flex px-4 pb-2 pt-28">
@@ -71,17 +71,21 @@ export default function Navbar() {
                     <RxCross2 />
                   </button>
                 </div>
+
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
+                    <Link to={"/shop"}>Shop</Link>
+                  </div>
+                  <div className="flow-root">
                     <Link
-                      to={'/wishlist'}
-                      style={{ color: mode === 'dark' ? 'white' : '' }}
+                      to={"/wishlist"}
+                      style={{ color: mode === "dark" ? "white" : "" }}
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Wishlist
                       <span
                         className="ml-2 text-sm font-medium text-gray-700 group-"
-                        style={{ color: mode === 'dark' ? 'white' : '' }}
+                        style={{ color: mode === "dark" ? "white" : "" }}
                       >
                         {wishlistItems.length}
                       </span>
@@ -93,7 +97,7 @@ export default function Navbar() {
                       <a
                         onClick={logout}
                         className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
-                        style={{ color: mode === 'dark' ? 'white' : '' }}
+                        style={{ color: mode === "dark" ? "white" : "" }}
                       >
                         Logout
                       </a>
@@ -101,9 +105,9 @@ export default function Navbar() {
                   ) : (
                     <div className="flow-root">
                       <Link
-                        to={'/signup'}
+                        to={"/signup"}
                         className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
-                        style={{ color: mode === 'dark' ? 'white' : '' }}
+                        style={{ color: mode === "dark" ? "white" : "" }}
                       >
                         Signup
                       </Link>
@@ -112,14 +116,14 @@ export default function Navbar() {
 
                   <div className="flow-root">
                     <Link
-                      to={'/'}
+                      to={"/"}
                       className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
                     >
                       <img
                         className="inline-block w-10 h-10 rounded-full"
                         src="https://t4.ftcdn.net/jpg/02/45/56/35/240_F_245563558_XH9Pe5LJI2kr7VQuzQKAjAbz9PAyejG1.jpg"
                         alt="Abhishek"
-                      />{' '}
+                      />{" "}
                     </Link>
                   </div>
                 </div>
@@ -133,7 +137,7 @@ export default function Navbar() {
                     />
                     <span
                       className="ml-3 block text-base font-medium text-gray-900"
-                      style={{ color: mode === 'dark' ? 'white' : '' }}
+                      style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       INDIA
                     </span>
@@ -151,8 +155,8 @@ export default function Navbar() {
         <p
           className="flex h-10 items-center justify-center bg-pink-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8"
           style={{
-            backgroundColor: mode === 'dark' ? 'rgb(62 64 66)' : '',
-            color: mode === 'dark' ? 'white' : '',
+            backgroundColor: mode === "dark" ? "rgb(62 64 66)" : "",
+            color: mode === "dark" ? "white" : "",
           }}
         >
           Get free delivery on orders over ₹300
@@ -163,8 +167,8 @@ export default function Navbar() {
           aria-label="Top"
           className="bg-gray-100 px-4 sm:px-6 lg:px-8 shadow-xl"
           style={{
-            backgroundColor: mode === 'dark' ? '#282c34' : '',
-            color: mode === 'dark' ? 'white' : '',
+            backgroundColor: mode === "dark" ? "#282c34" : "",
+            color: mode === "dark" ? "white" : "",
           }}
         >
           <div className="">
@@ -174,8 +178,8 @@ export default function Navbar() {
                 className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
                 onClick={() => setOpen(true)}
                 style={{
-                  backgroundColor: mode === 'dark' ? 'rgb(80 82 87)' : '',
-                  color: mode === 'dark' ? 'white' : '',
+                  backgroundColor: mode === "dark" ? "rgb(80 82 87)" : "",
+                  color: mode === "dark" ? "white" : "",
                 }}
               >
                 <span className="sr-only">Open menu</span>
@@ -197,11 +201,11 @@ export default function Navbar() {
 
               {/* Logo */}
               <div className="w-[250px] flex lg:ml-1">
-                <Link to={'/'} className="flex">
+                <Link to={"/"} className="flex">
                   <div>
                     <h1
                       className="text-3xl w-[200px] font-bold text-black px-1 py-1 rounded transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
-                      style={{ color: mode === 'dark' ? 'white' : '' }}
+                      style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Capital Shop
                     </h1>
@@ -210,34 +214,34 @@ export default function Navbar() {
               </div>
 
               {/* Search box */}
-              <div className="flex items-center w-[600px] border-2 relative left-40 rounded-md focus-within:border-indigo-500">
+              <div className="hidden xl:flex items-center w-[600px] border-2 relative left-40 rounded-md focus-within:border-indigo-500">
                 <input
                   type="text"
                   placeholder="Search..."
                   value={searchQuery}
                   onChange={handleSearchInputChange}
                   className="w-full py-2 px-4 border-none outline-none"
-                  style={{ color: mode === 'dark' ? 'black' : '' }}
+                  style={{ color: mode === "dark" ? "black" : "" }}
                 />
                 <div className="flex items-center justify-center w-14 h-full rounded-r-md">
                   <IoSearch className="text-gray-400 h-6 w-6" />
                 </div>
               </div>
 
-              <div className="relative left-80 p-2 text-base transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
-                <Link to={'/shop'}>Shop</Link>
+              <div className="hidden lg:flex relative left-80 p-2 text-base transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
+                <Link to={"/shop"}>Shop</Link>
               </div>
 
-              <div className="mr-2 flow-root lg:ml-80">
+              <div className="hidden lg:flex mr-2  lg:ml-80">
                 <Link
-                  to={'/wishlist'}
-                  style={{ color: mode === 'dark' ? 'white' : '' }}
+                  to={"/wishlist"}
+                  style={{ color: mode === "dark" ? "white" : "" }}
                   className="group text-base m-2 flex justify-center items-center p-2 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
                 >
                   Wishlist
                   <span
                     className="ml-1 text-sm font-medium text-gray-700 group-"
-                    style={{ color: mode === 'dark' ? 'white' : '' }}
+                    style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     {wishlistItems.length}
                   </span>
@@ -248,25 +252,25 @@ export default function Navbar() {
                 {user ? (
                   <>
                     <Link
-                      to={'/order'}
-                      className="text-base p-2 font-medium text-gray-700 mr-1 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
-                      style={{ color: mode === 'dark' ? 'white' : '' }}
+                      to={"/order"}
+                      className="hidden lg:flex text-base p-2 font-medium text-gray-700 mr-1 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
+                      style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Order
                     </Link>
                     <button
                       onClick={logout}
-                      className="text-base p-2 font-medium text-gray-700 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
-                      style={{ color: mode === 'dark' ? 'white' : '' }}
+                      className="hidden lg:flex text-base p-2 font-medium text-gray-700 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
+                      style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Logout
                     </button>
                   </>
                 ) : (
                   <Link
-                    to={'/signup'}
-                    className="text-base p-2 font-medium text-gray-700 mr-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
-                    style={{ color: mode === 'dark' ? 'white' : '' }}
+                    to={"/signup"}
+                    className="hidden lg:flex text-base p-2 font-medium text-gray-700 mr-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
+                    style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Signup
                   </Link>
@@ -281,7 +285,7 @@ export default function Navbar() {
                     />
                     <span
                       className="ml-3 block text-sm font-medium"
-                      style={{ color: mode === 'dark' ? 'white' : '' }}
+                      style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       INDIA
                     </span>
@@ -300,10 +304,10 @@ export default function Navbar() {
 
                 <div className="flex p-1 lg:ml-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
                   <button className="" onClick={toggleMode}>
-                    {mode === 'light' ? (
+                    {mode === "light" ? (
                       <FiSun className="" size={30} />
                     ) : (
-                      mode === 'dark' && <BsFillCloudSunFill size={30} />
+                      mode === "dark" && <BsFillCloudSunFill size={30} />
                     )}
                   </button>
                 </div>
@@ -311,9 +315,9 @@ export default function Navbar() {
                 {/* Cart */}
                 <div className="ml-4 p-2 flow-root lg:ml-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
                   <Link
-                    to={'/cart'}
+                    to={"/cart"}
                     className="group -m-2 flex items-center p-2"
-                    style={{ color: mode === 'dark' ? 'white' : '' }}
+                    style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -332,7 +336,7 @@ export default function Navbar() {
 
                     <span
                       className="ml-2 text-sm font-medium text-gray-700 group-"
-                      style={{ color: mode === 'dark' ? 'white' : '' }}
+                      style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       {cartItems.length}
                     </span>
