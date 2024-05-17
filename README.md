@@ -8,4 +8,6 @@
    <li>Node.js</li>
   </ul>
 
+   <p>You also need to have a basic understanding of React JS and Tailwind CSS.</p>
+
  
