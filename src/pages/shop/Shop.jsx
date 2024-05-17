@@ -11,11 +11,8 @@ const Shop = () => {
     products,
     setProducts,
     sortOrder,
-    setSortOrder,
     selectedCategory,
-    setSelectedCategory,
     searchQuery,
-    categories,
     setCategories,
   } = useContext(myContext);
 
@@ -58,14 +55,6 @@ const Shop = () => {
     getProducts(selectedCategory);
   }, [selectedCategory]);
 
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
-  };
-
-  const handleSortChange = (sortOrder) => {
-    setSortOrder(sortOrder);
-  };
-
   const toggleWishlist = (product) => {
     if (isInWishlist(product.id)) {
       removeFromWishlist(product.id);
@@ -81,13 +70,7 @@ const Shop = () => {
   return (
     <Layout>
       <div className="flex flex-col mb-10 lg:flex-row">
-        <Filter
-          sortOrder={sortOrder}
-          handleSortChange={handleSortChange}
-          categories={categories}
-          selectedCategory={selectedCategory}
-          handleCategoryChange={handleCategoryChange}
-        />
+        <Filter />
         <div className="mt-6 px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center mb-8">
             <h1
@@ -96,7 +79,7 @@ const Shop = () => {
             >
               Our Collection
             </h1>
-            <div className="h-1 w-24 bg-pink-600 mx-auto rounded"></div>
+            <div className="h-1 w-52 bg-pink-600 mx-auto rounded"></div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {products
