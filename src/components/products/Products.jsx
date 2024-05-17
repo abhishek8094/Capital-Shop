@@ -50,7 +50,7 @@ export default function Products() {
         .slice(0, 16).map((product) => (
           <div
             key={product.id}
-            className="bg-slate-200 rounded-lg m-3 overflow-hidden shadow-md px-10 py-8 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+            className="bg-slate-200 rounded-lg m-3 overflow-hidden shadow-md px-8 py-8 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
             style={{ boxShadow: "0 4px 6px rgba(255,255,255,0.1)" }}
           >
             <div className="absolute top-0 right-0 mt-2 mr-2 md:mr-4 lg:mr-6">
@@ -76,7 +76,7 @@ export default function Products() {
               <div className="mt-4">
                 <h1 className="text-lg uppercase font-bold">{product.title}</h1>
                 <p className="mt-2 text-gray-600 text-sm">
-                  {product.description.slice(0, 60)}...
+                  {product.description.slice(0, 45)}...
                 </p>
                 <p className="mt-2 text-gray-600">₹ {product.price}</p>
               </div>
