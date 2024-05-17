@@ -5,7 +5,7 @@ import myContext from "../../context/myContext";
 
 export default function Products() {
   const context = useContext(myContext);
-  const { mode, categories ,searchQuery } = context;
+  const { mode, searchQuery } = context;
   const [products, setProducts] = useState([]);
   const { addToWishlist, removeFromWishlist, isInWishlist } =
     useContext(WishlistContext);
@@ -13,7 +13,7 @@ export default function Products() {
   async function getProducts() {
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     setProducts(data.products);
   }
 
@@ -47,7 +47,6 @@ export default function Products() {
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-10">
 
         {products.filter((obj) => obj.title.toLowerCase().includes(searchQuery))
-        .filter((obj) => obj.category.toLowerCase().includes(categories))
         .slice(0, 8).map((product) => (
           <div
             key={product.id}
