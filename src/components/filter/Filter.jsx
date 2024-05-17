@@ -5,8 +5,8 @@ const Filter = () => {
   const {
     mode,
     selectedCategory,
-    handleCategoryChange,
-    handleSortChange,
+    setSelectedCategory,
+    setSortOrder,
     categories,
     selectedSort,
     setSelectedSort,
@@ -19,6 +19,10 @@ const Filter = () => {
     handleSortChange(e.target.value);
   };
 
+  const handleSortChange = (sortOrder) => {
+    setSortOrder(sortOrder);
+  }; 
+
   const handleResetChange = () => {
     const newResetState = !isReset;
     setIsReset(newResetState);
@@ -27,6 +31,10 @@ const Filter = () => {
       handleSortChange("");
       setSelectedSort("");
     }
+  };
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
   };
 
   return (
