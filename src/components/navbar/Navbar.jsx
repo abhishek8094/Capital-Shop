@@ -58,7 +58,7 @@ export default function Navbar() {
                 className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl"
                 style={{
                   backgroundColor: mode === "dark" ? "rgb(40, 44, 52)" : "",
-                  color: mode === "dark" ? "white" : "",
+                  color: mode === "dark" ? "white" : ""
                 }}
               >
                 <div className="flex px-4 pb-2 pt-28">
@@ -67,7 +67,7 @@ export default function Navbar() {
                     className="-m-2 inline-flex  items-center justify-center rounded-md p-2 text-gray-400"
                     onClick={() => setOpen(false)}
                   >
-                    <span className="sr-only ">Close menu</span>
+                    <span className="sr-only " style={{ color: mode === "dark" ? "white" : "" }}>Close menu</span>
                     <RxCross2 className="font-medium text-gray-900" />
                   </button>
                 </div>
@@ -75,7 +75,7 @@ export default function Navbar() {
                 <div className=" mx-5 gap-4 border-t border-gray-200 px-4 py-4">
                   <div className=" flow-root">
                     <Link to={"/shop"}
-                    className="text-base p-2 font-medium  text-gray-900">Shop</Link>
+                    className="text-base p-2 font-medium  text-gray-900" style={{ color: mode === "dark" ? "white" : "" }}>Shop</Link>
                   </div>
                   <div className="flow-root">
                     <Link
@@ -94,7 +94,7 @@ export default function Navbar() {
                   </div>
 
                   {user ? (
-                  <>
+                  <div className="flex-col">
                     <Link
                       to={"/order"}
                       className=" text-base p-2 font-medium text-gray-700 "
@@ -109,7 +109,7 @@ export default function Navbar() {
                     >
                       Logout
                     </button>
-                  </>
+                  </div>
                 ) : (
                   <Link
                     to={"/signup"}
