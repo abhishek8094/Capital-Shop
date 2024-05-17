@@ -1,10 +1,18 @@
-import React, { useState, useContext } from 'react';
-import myContext from '../../context/myContext';
+import React, { useContext } from "react";
+import myContext from "../../context/myContext";
 
-const Filter = ({ selectedCategory, handleCategoryChange, handleSortChange }) => {
-  const [selectedSort, setSelectedSort] = useState("");
-  const [isReset, setIsReset] = useState(false);
-  const { mode ,categories } = useContext(myContext);
+const Filter = () => {
+  const {
+    mode,
+    selectedCategory,
+    handleCategoryChange,
+    handleSortChange,
+    categories,
+    selectedSort,
+    setSelectedSort,
+    isReset,
+    setIsReset,
+  } = useContext(myContext);
 
   const handleSortOrderChange = (e) => {
     setSelectedSort(e.target.value);
@@ -23,7 +31,12 @@ const Filter = ({ selectedCategory, handleCategoryChange, handleSortChange }) =>
 
   return (
     <div className="mb-4 text-center ml-7 mr-7 mt-2 lg:w-1/4 lg:pr-4">
-      <h1 className='text-2xl mb-2' style={{ color: mode === "dark" ? "white" : "" }}>Filter</h1>
+      <h1
+        className="text-2xl mb-2"
+        style={{ color: mode === "dark" ? "white" : "" }}
+      >
+        Filter
+      </h1>
       <select
         value={selectedCategory}
         onChange={handleCategoryChange}
@@ -37,7 +50,12 @@ const Filter = ({ selectedCategory, handleCategoryChange, handleSortChange }) =>
         ))}
       </select>
 
-      <h2 className='text-xl mb-2 mt-2' style={{ color: mode === "dark" ? "white" : "" }}>Sort</h2>
+      <h2
+        className="text-xl mb-2 mt-2"
+        style={{ color: mode === "dark" ? "white" : "" }}
+      >
+        Sort
+      </h2>
       <select
         value={selectedSort}
         onChange={handleSortOrderChange}
