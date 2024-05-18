@@ -4,10 +4,11 @@
 
  <h3>Features includes 🚀</h3>
   <ul>
+   <li><b>toggle ⏺️</b></li>
    <li>Add to Wishlist 💗</li>
    <li>Remove from Wishlist 🤍</li>
    <li>Add to Cart </li>
-   <li>Removve from Cart </li>
+   <li>Remove from Cart </li>
    <li>Item alerady in cart </li>
    <li>Increase and decrease Items  with quantity 📈 📉 </li>
    <li>Delete the item ❌</li>
@@ -15,6 +16,10 @@
    <li><b>Login ✅</b> </li>
    <li>Order </li>
    <li><b>Payment integration 💰</b></li>
+   <li>Search the products 🔎 </li>
+   <li>Filter the products </li>
+   <li>Sorting the price</li>
+   <li>Reset</li>
   </ul>
  
  <h2> Prerequisites </h2>
