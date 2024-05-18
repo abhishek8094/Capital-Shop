@@ -48,6 +48,7 @@ const Shop = () => {
   }, [sortOrder]);
 
   useEffect(() => {
+    window.scroll(0, 0);
     getCategories();
   }, []);
 
