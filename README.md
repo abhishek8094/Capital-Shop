@@ -1,6 +1,6 @@
 # Capital Shop
  <h2> Introduction </h2>
- <p>I have completed my major project the Ecommerce <b>Capital shop </b> .I have used the tech stack HTML5, Tailwind CSS , Javascript and ReactJs .I have completed better UI . In this project I have learned about so many fatures. So </p>
+ <p>I have completed my major project the Ecommerce <b>Capital shop </b> .I have used the tech stack HTML5, Tailwind CSS , Javascript and ReactJs .I have completed better UI . In this project I have learned about so many features. So </p>
 
  <h3>Features includes 🚀</h3>
   <ul>
