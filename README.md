@@ -41,6 +41,8 @@ npm create vite@latest
 npm run dev
 ```
 
+<p>This will start the application in development mode. You can now open the application in your browser by navigating to http://localhost:5173.</p>
+
 <h2>Resources</h2>
 
    [React](https://react.dev/)
