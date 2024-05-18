@@ -3,6 +3,20 @@
  <p>I have completed my major project the Ecommerce <b>Capital shop </b> .I have used the tech stack HTML5, Tailwind CSS , Javascript and ReactJs .I have completed better UI . In this project I have learned about so many fatures. So </p>
 
  <h3>Features includes 🚀</h3>
+  <ul>
+   <li>Add to Wishlist 💗</li>
+   <li>Remove from Wishlist 🤍</li>
+   <li>Add to Cart </li>
+   <li>Removve from Cart </li>
+   <li>Item alerady in cart </li>
+   <li>Increase and decrease Items  with quantity 📈 📉 </li>
+   <li>Delete the item ❌</li>
+   <li><b>Signup 🔑</b></li> 
+   <li><b>Login ✅</b> </li>
+   <li>Order </li>
+   <li><b>Payment integration 💰</b></li>
+  </ul>
+ 
  <h2> Prerequisites </h2>
   <p>To follow along with this repo, you will need to have the following installed on your machine:</p>
   <ul>
