@@ -26,7 +26,7 @@
   <p>To follow along with this repo, you will need to have the following installed on your machine:</p>
   <ul>
    <li>Node.js</li>
-   <li>Node.js</li>
+   <li>npm</li>
   </ul>
 <p>You also need to have a basic understanding of React JS and Tailwind CSS.</p>
 <h2> Getting Started </h2>
