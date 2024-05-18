@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import MyContext from "../../context/myContext";
 import Layout from "../../components/layout/Layout";
 import Loader from "../../components/loader/Loader";
@@ -10,6 +10,9 @@ function Order() {
   const context = useContext(MyContext);
   const { mode, loading, order } = context;   
 
+  useEffect(() => {
+    window.scroll(0,0);
+  })
   return (
     <Layout>
       {loading ? (
