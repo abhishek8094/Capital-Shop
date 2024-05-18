@@ -76,7 +76,7 @@ const Cart = () => {
       handler: function (response) {
         toast.success("Payment Successful");
 
-        navigate("/cart");
+        navigate("/");
 
         const paymentId = response.razorpay_payment_id;
 
