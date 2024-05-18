@@ -77,11 +77,11 @@ module.exports = {
 
 <h2>Resources</h2>
 
-   [React](https://react.dev/)
+   -[React](https://react.dev/)
    <br/>
-   [Tailwind CSS](https://tailwindcss.com/)
+   -[Tailwind CSS](https://tailwindcss.com/)
     <br/>
-   [Context](https://legacy.reactjs.org/docs/context.html)
+   -[Context](https://legacy.reactjs.org/docs/context.html)
 
    Thank you for reading this. If you have any questions, feel free to reach out to me on [Email](https://mail.google.com/mail/u/0/#inbox) or [LinkedIn](https://www.linkedin.com/in/abhishek8094/).
 
