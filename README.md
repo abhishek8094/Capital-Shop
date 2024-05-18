@@ -32,5 +32,11 @@
 <h2> Getting Started </h2>
 <p>To get started, we will create a new React application using vite. To do this, run the following command in your terminal:</p>
 
+<h2>Resources</h2>
+<ul>
+   <li>React(https://react.dev/)</li>
+   <li>Tailwind CSS(https://tailwindcss.com/)</li>
+</ul>
+
 
  
