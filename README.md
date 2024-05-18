@@ -40,7 +40,7 @@
     <br/>
    [Context](https://legacy.reactjs.org/docs/context.html)
 
-   <p>Thank you for reading this. If you have any questions, feel free to reach out to me on [Email](cseabhishek8094@gmail.com) or [LinkedIn](https://www.linkedin.com/in/abhishek8094/).</p>
+   Thank you for reading this. If you have any questions, feel free to reach out to me on [Email](cseabhishek8094@gmail.com) or [LinkedIn](https://www.linkedin.com/in/abhishek8094/).
 
 
 
