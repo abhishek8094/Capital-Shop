@@ -31,6 +31,9 @@
 <p>You also need to have a basic understanding of React JS and Tailwind CSS.</p>
 <h2> Getting Started </h2>
 <p>To get started, we will create a new React application using vite. To do this, run the following command in your terminal:</p>
+```
+npm create vite@latest
+```
 
 <h2>Resources</h2>
 
