@@ -43,6 +43,38 @@ npm run dev
 
 <p>This will start the application in development mode. You can now open the application in your browser by navigating to <span style = "background-color: red"> http://localhost:5173. </span></p>
 
+<h2>Installing Tailwind CSS</h2>
+<p>To install Tailwind CSS, run the following command in your terminal:</p>
+
+```
+npm install -D tailwindcss postcss autoprefixer
+```
+```
+npx tailwindcss init -p
+```
+
+<p>This will create a tailwind.config.js file in the root of your project. Open the tailwind.config.js file and add the following code to it:</p>
+
+```
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+<p>Next, let's clean up the index.css file in the src folder. Open the index.css file and remove all the code in it. Next, add the following code to the index.css file:</p>
+
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
 <h2>Resources</h2>
 
    [React](https://react.dev/)
