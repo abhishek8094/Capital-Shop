@@ -42,7 +42,7 @@ const Carousel = ({ movingimg, interval = 5000 }) => {
       <img
         src={movingimg[activeIndex]}
         alt={`Slide ${activeIndex}`}
-        className="w-full h-[380px] object-bottom"
+        className="w-full h-[300px] lg:h-[340px] object-bottom"
       />
       <button
         className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full"
@@ -55,7 +55,7 @@ const Carousel = ({ movingimg, interval = 5000 }) => {
           <button
             key={index}
             className={`w-4 h-4 rounded-full ${
-              index === activeIndex ? "bg-white" : "bg-gray-500"
+              index === activeIndex ? "bg-white" : "bg-blue-500"
             }`}
             onClick={() => handleDotClick(index)}
           />
