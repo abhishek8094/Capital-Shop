@@ -41,7 +41,7 @@ npm create vite@latest
 npm run dev
 ```
 
-<p>This will start the application in development mode. You can now open the application in your browser by navigating to <span style = "background color: black"> http://localhost:5173. </span></p>
+<p>This will start the application in development mode. You can now open the application in your browser by navigating to <span style = "background-color: black"> http://localhost:5173. </span></p>
 
 <h2>Resources</h2>
 
