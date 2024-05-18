@@ -34,8 +34,8 @@
 
 <h2>Resources</h2>
 <ul>
-   <li>-[React](https://react.dev/)</li>
-   <li>-[Tailwind CSS](https://tailwindcss.com/)</li>
+   [React](https://react.dev/)
+   [Tailwind CSS](https://tailwindcss.com/)
 </ul>
 
 
