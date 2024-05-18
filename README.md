@@ -35,7 +35,11 @@
 ```
 npm create vite@latest
 ```
+<p>You will be prompted to enter the name of your project. Enter the name of your project and press enter. In this repo, we will be naming our project Capital shop. You will also be prompted to select a framework. Select React and press enter. You will also be prompted to select a variant. Select Javascript and press enter. This will create a new React application in a folder named Capital shop. To start the application, navigate to the react-cart folder cd capital shop and run the following command in your terminal:</p>
 
+```
+npm run dev
+```
 
 <h2>Resources</h2>
 
