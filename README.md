@@ -80,7 +80,9 @@ module.exports = {
 -[Tailwind CSS](https://tailwindcss.com/)
 -[Context](https://legacy.reactjs.org/docs/context.html)
 
-   Thank you for reading this. If you have any questions, feel free to reach out to me on [Email](https://mail.google.com/mail/u/0/#inbox) or [LinkedIn](https://www.linkedin.com/in/abhishek8094/).
+[support]: https://caniuse.com/#feat=custom-elementsv1
+[polyfill]: https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements
+Thank you for reading this. If you have any questions, feel free to reach out to me on [Email](https://mail.google.com/mail/u/0/#inbox) or [LinkedIn](https://www.linkedin.com/in/abhishek8094/).
 
 
 
