@@ -4,11 +4,10 @@ import myContext from "../../context/myContext";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/FirebaseConfig";
 import { toast } from "react-toastify";
-import Loader from "../../components/loader/Loader";
 
 function Login() {
   const context = useContext(myContext);
-  const { loading, setLoading, signUpSuccess } = context;
+  const { setLoading, signUpSuccess } = context;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +25,21 @@ function Login() {
 
   const login = async (e) => {
     e.preventDefault();
-    setLoading(true);
+
+    if (!email || !password) {
+      toast.error("Please enter both email and password", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      return;
+    }
+
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful", {
@@ -39,18 +52,26 @@ function Login() {
         progress: undefined,
         theme: "colored",
       });
-      localStorage.setItem("user", JSON.stringify(result));
+      localStorage.setItem("user", JSON.stringify(result.user));
       navigate("/");
-      setLoading(false);
     } catch (error) {
-      console.log(error);
+      toast.error("Wrong email or password", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } finally {
       setLoading(false);
     }
   };
 
   return (
     <div className="flex justify-center bg-slate-500 items-center h-screen">
-      {loading && <Loader />}
       <div className="bg-gray-800 px-10 py-10 rounded-xl">
         <form onSubmit={login}>
           <div>
@@ -76,13 +97,13 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className="bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none"
               placeholder="Password"
-              autoComplete="password"
+              autoComplete="current-password"
             />
           </div>
           <div className="flex justify-center mb-3">
             <button
               type="submit"
-              className="bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg"
+              className="bg-yellow-500 w-full text-black font-bold px-2 py-2 rounded-lg"
             >
               Login
             </button>
@@ -90,7 +111,7 @@ function Login() {
         </form>
         <div>
           <h2 className="text-white">
-            Don't have an account ?{" "}
+            Don't have an account?{" "}
             <Link className="text-yellow-500 font-bold" to={"/signup"}>
               Signup
             </Link>
