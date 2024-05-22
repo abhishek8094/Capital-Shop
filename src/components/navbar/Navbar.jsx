@@ -296,7 +296,7 @@ export default function Navbar() {
                     <img
                       src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
                       alt=""
-                      className="block h-auto w-5 flex-shrink-0"
+                      className="block h-auto w-5 p-1 flex-shrink-0"
                     />
                     <span
                       className="ml-3  block text-sm font-medium"
