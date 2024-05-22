@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { BsFillCloudSunFill } from "react-icons/bs";
 import { FiSun } from "react-icons/fi";
 import myContext from "../../context/myContext";
+import Navlogo from "../../assets/capitalshop.png";
 import { RxCross2 } from "react-icons/rx";
 import { WishlistContext } from "../../context/WishlistContext";
 import { IoSearch } from "react-icons/io5";
@@ -31,7 +32,7 @@ export default function Navbar() {
     <div className="bg-white sticky top-0 z-50">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen} >
+        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -58,7 +59,7 @@ export default function Navbar() {
                 className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl"
                 style={{
                   backgroundColor: mode === "dark" ? "rgb(40, 44, 52)" : "",
-                  color: mode === "dark" ? "white" : ""
+                  color: mode === "dark" ? "white" : "",
                 }}
               >
                 <div className="flex px-4 pb-2 pt-28">
@@ -68,14 +69,22 @@ export default function Navbar() {
                     onClick={() => setOpen(false)}
                   >
                     <span className="sr-only ">Close menu</span>
-                    <RxCross2 className="font-medium text-gray-900" style={{ color: mode === "dark" ? "white" : "" }} />
+                    <RxCross2
+                      className="font-medium text-gray-900"
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    />
                   </button>
                 </div>
 
                 <div className=" mx-5 gap-4 border-t border-gray-200 px-4 py-4">
                   <div className=" flow-root">
-                    <Link to={"/shop"}
-                    className="text-base p-2 font-medium  text-gray-900" style={{ color: mode === "dark" ? "white" : "" }}>Shop</Link>
+                    <Link
+                      to={"/shop"}
+                      className="text-base p-2 font-medium  text-gray-900"
+                      style={{ color: mode === "dark" ? "white" : "" }}
+                    >
+                      Shop
+                    </Link>
                   </div>
                   <div className="flow-root">
                     <Link
@@ -94,32 +103,31 @@ export default function Navbar() {
                   </div>
 
                   {user ? (
-                  <div className="flex-col">
+                    <div className="flex-col">
+                      <Link
+                        to={"/order"}
+                        className=" text-base p-2 font-medium text-gray-700 "
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        Order
+                      </Link>
+                      <button
+                        onClick={logout}
+                        className=" text-base p-2  font-medium text-gray-700 "
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  ) : (
                     <Link
-                      to={"/order"}
+                      to={"/signup"}
                       className=" text-base p-2 font-medium text-gray-700 "
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
-                      Order
+                      Signup
                     </Link>
-                    <button
-                      onClick={logout}
-                      className=" text-base p-2  font-medium text-gray-700 "
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      Logout
-                    </button>
-                  </div>
-                ) : (
-                  <Link
-                    to={"/signup"}
-                    className=" text-base p-2 font-medium text-gray-700 "
-                    style={{ color: mode === "dark" ? "white" : "" }}
-                  >
-                    Signup
-                  </Link>
-                )}
-
+                  )}
 
                   <div className="flow-root">
                     <Link
@@ -172,7 +180,7 @@ export default function Navbar() {
         {/* Navbar */}
         <nav
           aria-label="Top"
-          className="bg-gray-100 px-4 sm:px-6 lg:px-8 shadow-xl"
+          className="bg-gray-100 px-4 sm:px-6 lg:px-8 shadow-xl static"
           style={{
             backgroundColor: mode === "dark" ? "#282c34" : "",
             color: mode === "dark" ? "white" : "",
@@ -207,21 +215,19 @@ export default function Navbar() {
               </button>
 
               {/* Logo */}
-              <div className="w-[250px] flex lg:ml-1">
-                <Link to={"/"} className="flex">
-                  <div>
-                    <h1
-                      className="text-3xl w-[200px] font-bold text-black px-1 py-1 rounded transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      Capital Shop
-                    </h1>
+              <div className="w-[180px]">
+                <Link to={"/"}>
+                  <div className="transition duration-100 ease-in-out hover:border-2 hover:w-14 border-transparent hover:border-[#4cbaff]">
+                    <img
+                      src={Navlogo}
+                      className="w-14  p-2 bg-[#F3F4F6] "
+                    />
                   </div>
                 </Link>
               </div>
 
               {/* Search box */}
-              <div className="hidden lg:flex items-center w-[800px] border-2 hover:border-black relative left-40 rounded-md ">
+              <div className="hidden lg:flex items-center w-[800px] border-2 hover:border-black relative left-40 rounded-md  ">
                 <input
                   type="text"
                   placeholder="Search your products..."
@@ -235,15 +241,17 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <div className="hidden lg:flex relative left-80 p-2 text-base transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
-                <Link to={"/shop"} className="text-base font-medium">Shop</Link>
+              <div className="hidden lg:flex relative left-80 p-2 text-base border-2 border-transparent hover:border-[#4cbaff]">
+                <Link to={"/shop"} className="text-base font-medium">
+                  Shop
+                </Link>
               </div>
 
-              <div className="hidden lg:flex mr-2  lg:ml-80">
+              <div className="hidden lg:flex mr-1 lg:ml-80">
                 <Link
                   to={"/wishlist"}
                   style={{ color: mode === "dark" ? "white" : "" }}
-                  className="group text-base m-2 font-medium flex justify-center items-center p-2 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
+                  className="group text-base m-2 font-medium flex justify-center items-center p-2 border-2 border-transparent hover:border-[#4cbaff]"
                 >
                   Wishlist
                   <span
@@ -260,14 +268,14 @@ export default function Navbar() {
                   <>
                     <Link
                       to={"/order"}
-                      className="hidden lg:flex text-base p-2 font-medium text-gray-700 mr-1 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
+                      className="hidden lg:flex text-base p-2 font-medium text-gray-800 mr-1 border-2 border-transparent hover:border-[#4cbaff] "
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Order
                     </Link>
                     <button
                       onClick={logout}
-                      className="hidden lg:flex text-base p-2 font-medium text-gray-700 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
+                      className="hidden lg:flex text-base p-2 font-medium text-gray-700 border-2 border-transparent hover:border-[#4cbaff]"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Logout
@@ -276,22 +284,22 @@ export default function Navbar() {
                 ) : (
                   <Link
                     to={"/signup"}
-                    className="hidden lg:flex text-base p-2 font-medium text-gray-700 mr-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]"
+                    className="hidden lg:flex text-base p-2 font-medium text-gray-700 mr-4 border-2 border-transparent hover:border-[#4cbaff] "
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Signup
                   </Link>
                 )}
 
-                <div className="hidden lg:mr-1 p-2 w-28 lg:flex transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
-                  <a href="#" className="flex items-center text-gray-700">
+                <div className="hidden lg:mr-1 py-2 w-28 lg:flex border-2 border-transparent hover:border-[#4cbaff]">
+                  <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
                       alt=""
                       className="block h-auto w-5 flex-shrink-0"
                     />
                     <span
-                      className="ml-3 block text-sm font-medium"
+                      className="ml-3  block text-sm font-medium"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       INDIA
@@ -302,14 +310,14 @@ export default function Navbar() {
                 <div className="hidden lg:ml-4 lg:flex">
                   <a href="#" className="flex items-center text-gray-700">
                     <img
-                      className="inline-block w-10 h-10 rounded-full"
+                      className="inline-block w-12 h-9 rounded-full"
                       src="https://t4.ftcdn.net/jpg/02/45/56/35/240_F_245563558_XH9Pe5LJI2kr7VQuzQKAjAbz9PAyejG1.jpg"
                       alt="Abhishek"
                     />
                   </a>
                 </div>
 
-                <div className="flex p-1 lg:ml-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
+                <div className="flex p-2 lg:ml-6 border-2 border-transparent hover:border-[#4cbaff]">
                   <button className="" onClick={toggleMode}>
                     {mode === "light" ? (
                       <FiSun className="" size={30} />
@@ -320,7 +328,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Cart */}
-                <div className="ml-4 p-2 flow-root lg:ml-6 transition duration-300 ease-in-out hover:border-2 border-[#4cbaff]">
+                <div className="ml-4 p-2 flow-root lg:ml-6 border-2 border-transparent hover:border-[#4cbaff]">
                   <Link
                     to={"/cart"}
                     className="group -m-2 flex items-center p-2"
