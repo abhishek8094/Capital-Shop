@@ -56,12 +56,12 @@ export default function Products() {
               {isInWishlist(product.id) ? (
                 <FaHeart
                   onClick={() => toggleWishlist(product)}
-                  className="text-red-500 text-xl cursor-pointer"
+                  className="text-purple-700 text-xl cursor-pointer "
                 />
               ) : (
                 <FaRegHeart
                   onClick={() => toggleWishlist(product)}
-                  className="text-xl cursor-pointer"
+                  className="text-xl font-medium text-red-800  cursor-pointer"
                 />
               )}
             </div>
