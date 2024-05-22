@@ -38,9 +38,9 @@ const Filter = () => {
   };
 
   return (
-    <div className="mb-4 text-center ml-7 mr-7 mt-2 lg:w-1/4 lg:pr-4">
+    <div className=" text-center ml-7 mr-7 mt-24 lg:w-1/4 lg:pr-4">
       <h1
-        className="text-2xl mb-2"
+        className="text-lg mb-2"
         style={{ color: mode === "dark" ? "white" : "" }}
       >
         Filter
@@ -59,7 +59,7 @@ const Filter = () => {
       </select>
 
       <h2
-        className="text-xl mb-2 mt-2"
+        className="text-lg mb-2 mt-2"
         style={{ color: mode === "dark" ? "white" : "" }}
       >
         Sort
@@ -75,13 +75,13 @@ const Filter = () => {
       </select>
 
       <div className="mt-4 text-xl">
-        <input
-          type="checkbox"
-          checked={isReset}
-          onChange={handleResetChange}
-          className="mr-2"
-        />
-        <label style={{ color: mode === "dark" ? "white" : "" }}>Reset</label>
+        <button
+          type="click"
+          onClick={handleResetChange}
+          className="border-2 bg-white p-1 w-16 rounded-md hover:bg-[#DB2777] hover:text-white "
+        >
+          Reset
+        </button>
       </div>
     </div>
   );
