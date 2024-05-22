@@ -71,7 +71,7 @@ const Shop = () => {
   return (
     <Layout>
       <div className="flex flex-col mb-10 lg:flex-row">
-        <Filter />
+        <Filter/>
         <div className="mt-6 px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center mb-8">
             <h1
