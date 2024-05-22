@@ -1,15 +1,25 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useContext } from "react";
 import Layout from "../layout/Layout";
 import myContext from "../../context/myContext";
+import { useNavigate } from "react-router-dom";
 import { CgTrashEmpty } from "react-icons/cg";
 import { WishlistContext } from "../../context/WishlistContext";
 
 const Wishlist = () => {
-  const { mode, addToCart } = useContext(myContext);
+  const [addedItems, setAddedItems] = useState([]);
+  const navigate = useNavigate()
+  const { mode,  addToCart } = useContext(myContext);
   const { wishlistItems ,removeFromWishlist } = useContext(WishlistContext);
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setAddedItems((prev) => [...prev, product.id]); 
+  };
 
+  const handleGoToCart = () => {
+    navigate("/cart");
+  };
   useEffect(() => {
     window.scroll(0,0);
   })
@@ -28,6 +38,7 @@ const Wishlist = () => {
       <div className="flex flex-col items-center">
         {wishlistItems.map((product, index) => {
           const { title, price, thumbnail, description, id } = product;
+          const isAdded = addedItems.includes(id);
 
           return (
             <div
@@ -65,12 +76,21 @@ const Wishlist = () => {
                   </p>
                 </div>
                 <div className="flex justify-between">
-                  <button
-                    onClick={() =>addToCart(product)}
-                    className="bg-green-500 text-white px-3 py-2 rounded-lg font-semibold hover:bg-green-600 focus:outline-none"
-                  >
-                    Add to Cart
-                  </button>
+                {!isAdded ? (
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className="bg-green-500 text-white px-3 py-2 rounded-lg font-semibold hover:bg-green-600 focus:outline-none"
+                    >
+                      Add to Cart
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleGoToCart}
+                      className="bg-blue-500 text-white px-3 py-2 rounded-lg font-semibold hover:bg-blue-600 focus:outline-none"
+                    >
+                      Go to Cart
+                    </button>
+                  )}
                   <button
                     onClick={() => removeFromWishlist(id)}
                     className="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 focus:outline-none"
