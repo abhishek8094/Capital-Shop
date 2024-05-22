@@ -28,20 +28,20 @@ function Footer() {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a
-                  className="text-gray-600 hover:text-gray-800"
+                <Link to="/"
+                  className="text-gray-600 hover:text-gray-800 cursor-pointer"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  className="text-gray-600 hover:text-gray-800"
+                <Link to="/order"
+                  className="text-gray-600 hover:text-gray-800 cursor-pointer"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
                   Order
-                </a>
+                </Link>
               </li>
               <li>
                 <a
@@ -52,12 +52,12 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  className="text-gray-600 hover:text-gray-800"
+                <Link to="/cart"
+                  className="text-gray-600 hover:text-gray-800 cursor-pointer"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
                   Cart
-                </a>
+                </Link>
               </li>
             </nav>
           </div>
