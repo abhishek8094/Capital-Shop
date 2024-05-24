@@ -52,8 +52,8 @@ const Filter = () => {
       >
         <option value="">All Categories</option>
         {categories.map((category) => (
-          <option key={category} value={category}>
-            {category}
+          <option key={category}>
+            {category.slug}
           </option>
         ))}
       </select>
@@ -76,7 +76,7 @@ const Filter = () => {
 
       <div className="mt-4 text-xl">
         <button
-          type="click"
+          type="button"
           onClick={handleResetChange}
           className="border-2 bg-white p-1 w-16 rounded-md hover:bg-[#DB2777] hover:text-white "
         >
@@ -84,6 +84,7 @@ const Filter = () => {
         </button>
       </div>
     </div>
+    
   );
 };
 
