@@ -13,7 +13,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const context = useContext(myContext);
-  const { toggleMode, mode, cartItems, searchQuery, setSearchQuery } = context;
+  const { toggleMode, mode, cartItems, products , setProducts, filterProducts, setFilterProducts, searchQuery, setSearchQuery ,} = context;
   const user = JSON.parse(localStorage.getItem("user"));
 
   const wish = useContext(WishlistContext);
@@ -24,9 +24,11 @@ export default function Navbar() {
     window.location.href = "/";
   };
 
-  const handleSearchInputChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
+   const filterData = (searchQuery, products) =>{
+      return products.filter((product) =>{
+        product?.products?.toLowerCase().includes(searchQuery.toLowerCase())
+      })
+  }
 
   return (
     <div className="bg-white sticky top-0 z-50">
@@ -217,27 +219,29 @@ export default function Navbar() {
               {/* Logo */}
               <div className="w-[180px]">
                 <Link to={"/"}>
-                  <div className="transition duration-100 ease-in-out hover:border-2 hover:w-14 border-transparent hover:border-[#4cbaff]">
-                    <img
-                      src={Navlogo}
-                      className="w-14  p-2 bg-[#F3F4F6] "
-                    />
+                  <div className="border-2 w-14 border-transparent hover:border-[#4cbaff]">
+                    <img src={Navlogo} className="w-14  p-2 bg-[#F3F4F6] " />
                   </div>
                 </Link>
               </div>
 
               {/* Search box */}
-              <div className="hidden lg:flex items-center w-[800px] border-2 hover:border-black relative left-40 rounded-md  ">
+              <div className="hidden lg:flex items-center w-[1000px] border-2 hover:border-[#4cbaff] relative left-40 rounded-md  ">
                 <input
                   type="text"
                   placeholder="Search your products..."
                   value={searchQuery}
-                  onChange={handleSearchInputChange}
-                  className="w-full py-2 px-4 border-none outline-none"
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full py-2 px-4 border-none outline-none rounded"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 />
                 <div className="flex items-center justify-center w-14 h-full rounded-r-md">
-                  <IoSearch className="text-gray-400 h-6 w-6" />
+                  <button onClick={() => {
+                    const data = filterData(searchQuery, products)
+                    setFilterProducts(data)
+                  }}>
+                    <IoSearch className="text-gray-400 h-10 w-6"  />
+                  </button>
                 </div>
               </div>
 

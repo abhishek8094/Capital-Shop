@@ -5,8 +5,7 @@ import myContext from "../../context/myContext";
 
 export default function Products() {
   const context = useContext(myContext);
-  const { mode, searchQuery } = context;
-  const [products, setProducts] = useState([]);
+  const { mode, searchQuery , products, setProducts, setFilterProducts } = context;
   const { addToWishlist, removeFromWishlist, isInWishlist } =
     useContext(WishlistContext);
 
@@ -14,7 +13,8 @@ export default function Products() {
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
     console.log(data);
-    setProducts(data.products);
+    setProducts(data?.products);
+    setFilterProducts(data?.products);
   }
 
   const toggleWishlist = (product) => {

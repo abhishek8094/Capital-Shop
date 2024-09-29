@@ -89,9 +89,10 @@ const myState = (props) => {
     );
   };
 
+  const [products, setProducts] = useState([]);
+  const [filterProducts, setFilterProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSort, setSelectedSort] = useState("");
@@ -124,6 +125,8 @@ const myState = (props) => {
         cartItems,
         addToCart,
         removeFromCart,
+        filterProducts,
+        setFilterProducts,
         searchQuery,
         categories,
         setCategories,
