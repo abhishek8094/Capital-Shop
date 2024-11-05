@@ -38,7 +38,7 @@ const myState = (props) => {
       setCartItems(
         cartItems.map((cartItem) =>
           cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         )
       );

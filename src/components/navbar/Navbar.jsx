@@ -220,7 +220,7 @@ export default function Navbar() {
               <div className="w-[180px]">
                 <Link to={"/"}>
                   <div className="border-2 w-14 border-transparent hover:border-[#4cbaff]">
-                    <img src={Navlogo} className="w-14  p-2 bg-[#F3F4F6] " />
+                    <img src={Navlogo} className="w-14  p-2 bg-[#F3F4F6]" />
                   </div>
                 </Link>
               </div>
@@ -236,11 +236,11 @@ export default function Navbar() {
                   style={{ color: mode === "dark" ? "white" : "" }}
                 />
                 <div className="flex items-center justify-center w-14 h-full rounded-r-md">
-                  <button onClick={() => {
-                    const data = filterData(searchQuery, products)
-                    setFilterProducts(data)
-                  }}>
-                    <IoSearch className="text-gray-400 h-10 w-6"  />
+                  <button >
+                    <IoSearch className="text-gray-400 h-10 w-6" onClick={() => {
+                      const data = filterData(searchQuery, products)
+                      setFilterProducts(data)
+                    } } />
                   </button>
                 </div>
               </div>
@@ -266,7 +266,7 @@ export default function Navbar() {
                   </span>
                 </Link>
               </div>
-
+              
               <div className="ml-auto flex items-center">
                 {user ? (
                   <>
@@ -357,7 +357,7 @@ export default function Navbar() {
                       className="ml-2 text-sm font-medium text-gray-700 group-"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
-                      {cartItems.length}
+                      {cartItems.length -1 }
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Link>
